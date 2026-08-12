@@ -7,11 +7,16 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** | Peer Identity reference as specified at https://docs.libp2p.io/concepts/fundamentals/peers/ | 
 **addrs** | **List[str]** |  | 
-**repo** | **str** | Path of the data repository where all nodes data are stored | 
 **spr** | **str** | Signed Peer Record (libp2p) | 
-**announce_addresses** | **List[str]** |  | 
+**provider_record** | **str** | Signed Peer Record (libp2p) | [optional] 
+**provider_addresses** | **List[str]** |  | 
+**discovery_addresses** | **List[str]** |  | 
+**libp2p_pub_key** | **str** | Hex-encoded libp2p public key of the node | 
+**mix_pub_key** | **str** | Hex-encoded mix public key (present only for nodes that support mix) | [optional] 
 **table** | [**PeersTable**](PeersTable.md) |  | 
-**codex** | [**CodexVersion**](CodexVersion.md) |  | 
+**storage** | [**StorageVersion**](StorageVersion.md) |  | 
+**nat** | [**NatInfo**](NatInfo.md) |  | [optional] 
+**connections** | [**List[Connection]**](Connection.md) |  | [optional] 
 
 ## Example
 

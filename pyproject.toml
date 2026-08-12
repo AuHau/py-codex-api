@@ -1,12 +1,12 @@
 [tool.poetry]
 name = "codex_api_client"
 version = "0.4.0"
-description = "Codex API"
+description = "Logos Storage API"
 authors = ["OpenAPI Generator Community <team@openapitools.org>"]
 license = "NoLicense"
 readme = "README.md"
 repository = "https://github.com/codex-storage/py-codex-api-client"
-keywords = ["OpenAPI", "OpenAPI-Generator", "Codex API"]
+keywords = ["OpenAPI", "OpenAPI-Generator", "Logos Storage API"]
 include = ["codex_api_client/py.typed"]
 
 [tool.poetry.dependencies]

@@ -17,17 +17,34 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 
-class SPRRead(BaseModel):
+class NatInfo(BaseModel):
     """
-    SPRRead
+    NatInfo
     """ # noqa: E501
-    spr: StrictStr = Field(description="Signed Peer Record (libp2p)")
-    __properties: ClassVar[List[str]] = ["spr"]
+    reachability: StrictStr = Field(description="AutoNAT reachability status")
+    client_mode: StrictBool = Field(description="Whether the DHT is running in client mode (not added to remote routing tables)", alias="clientMode")
+    relay_running: StrictBool = Field(description="Whether the AutoRelay service is currently running", alias="relayRunning")
+    port_mapping: StrictStr = Field(description="Active NAT port mapping type", alias="portMapping")
+    __properties: ClassVar[List[str]] = ["reachability", "clientMode", "relayRunning", "portMapping"]
+
+    @field_validator('reachability')
+    def reachability_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['Unknown', 'Reachable', 'NotReachable']):
+            raise ValueError("must be one of enum values ('Unknown', 'Reachable', 'NotReachable')")
+        return value
+
+    @field_validator('port_mapping')
+    def port_mapping_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['none', 'upnp', 'pmp', 'pcp', 'direct']):
+            raise ValueError("must be one of enum values ('none', 'upnp', 'pmp', 'pcp', 'direct')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -47,7 +64,7 @@ class SPRRead(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of SPRRead from a JSON string"""
+        """Create an instance of NatInfo from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -72,7 +89,7 @@ class SPRRead(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of SPRRead from a dict"""
+        """Create an instance of NatInfo from a dict"""
         if obj is None:
             return None
 
@@ -80,7 +97,10 @@ class SPRRead(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "spr": obj.get("spr")
+            "reachability": obj.get("reachability"),
+            "clientMode": obj.get("clientMode"),
+            "relayRunning": obj.get("relayRunning"),
+            "portMapping": obj.get("portMapping")
         })
         return _obj
 

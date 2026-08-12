@@ -1,6 +1,6 @@
 # codex_api_client.NodeApi
 
-All URIs are relative to *http://localhost:8080/api/codex/v1*
+All URIs are relative to *http://localhost:8080/api/storage/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -26,10 +26,10 @@ import codex_api_client
 from codex_api_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:8080/api/codex/v1
+# Defining the host is optional and defaults to http://localhost:8080/api/storage/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = codex_api_client.Configuration(
-    host = "http://localhost:8080/api/codex/v1"
+    host = "http://localhost:8080/api/storage/v1"
 )
 
 
@@ -38,7 +38,7 @@ with codex_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = codex_api_client.NodeApi(api_client)
     peer_id = 'peer_id_example' # str | Peer that should be dialed.
-    addrs = ['addrs_example'] # List[str] | If supplied, it will be used to dial the peer. The address has to target the listening address of the peer, which is specified with the `--listen-addrs` CLI flag.  (optional)
+    addrs = ['addrs_example'] # List[str] | If supplied, it will be used to dial the peer. The address has to target the listening address of the peer, which is /ip4/<listen-ip>/tcp/<listen-port>, where `listen-port` is specified with the `--listen-port` CLI flag and `listen-ip` with the `--listen-ip` CLI flag.  (optional)
 
     try:
         # Connect to a peer
@@ -55,7 +55,7 @@ with codex_api_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **peer_id** | **str**| Peer that should be dialed. | 
- **addrs** | [**List[str]**](str.md)| If supplied, it will be used to dial the peer. The address has to target the listening address of the peer, which is specified with the &#x60;--listen-addrs&#x60; CLI flag.  | [optional] 
+ **addrs** | [**List[str]**](str.md)| If supplied, it will be used to dial the peer. The address has to target the listening address of the peer, which is /ip4/&lt;listen-ip&gt;/tcp/&lt;listen-port&gt;, where &#x60;listen-port&#x60; is specified with the &#x60;--listen-port&#x60; CLI flag and &#x60;listen-ip&#x60; with the &#x60;--listen-ip&#x60; CLI flag.  | [optional] 
 
 ### Return type
 
@@ -92,10 +92,10 @@ import codex_api_client
 from codex_api_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:8080/api/codex/v1
+# Defining the host is optional and defaults to http://localhost:8080/api/storage/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = codex_api_client.Configuration(
-    host = "http://localhost:8080/api/codex/v1"
+    host = "http://localhost:8080/api/storage/v1"
 )
 
 
@@ -153,10 +153,10 @@ import codex_api_client
 from codex_api_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:8080/api/codex/v1
+# Defining the host is optional and defaults to http://localhost:8080/api/storage/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = codex_api_client.Configuration(
-    host = "http://localhost:8080/api/codex/v1"
+    host = "http://localhost:8080/api/storage/v1"
 )
 
 

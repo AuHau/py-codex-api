@@ -1,6 +1,6 @@
 # codex_api_client.DebugApi
 
-All URIs are relative to *http://localhost:8080/api/codex/v1*
+All URIs are relative to *http://localhost:8080/api/storage/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -22,10 +22,10 @@ from codex_api_client.models.debug_info import DebugInfo
 from codex_api_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:8080/api/codex/v1
+# Defining the host is optional and defaults to http://localhost:8080/api/storage/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = codex_api_client.Configuration(
-    host = "http://localhost:8080/api/codex/v1"
+    host = "http://localhost:8080/api/storage/v1"
 )
 
 
@@ -83,10 +83,10 @@ import codex_api_client
 from codex_api_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:8080/api/codex/v1
+# Defining the host is optional and defaults to http://localhost:8080/api/storage/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = codex_api_client.Configuration(
-    host = "http://localhost:8080/api/codex/v1"
+    host = "http://localhost:8080/api/storage/v1"
 )
 
 
