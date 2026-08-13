@@ -8,7 +8,6 @@ Name | Type | Description | Notes
 **tree_cid** | **str** | Content Identifier as specified at https://github.com/multiformats/cid | 
 **dataset_size** | **int** | Length of original content in bytes | 
 **block_size** | **int** | Size of blocks | 
-**protected** | **bool** | Indicates if content is protected by erasure-coding | 
 **filename** | **str** | The original name of the uploaded content (optional) | [optional] 
 **mimetype** | **str** | The original mimetype of the uploaded content (optional) | [optional] 
 

@@ -1,6 +1,6 @@
 # codex_api_client.DataApi
 
-All URIs are relative to *http://localhost:8080/api/codex/v1*
+All URIs are relative to *http://localhost:8080/api/storage/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**download_network**](DataApi.md#download_network) | **POST** /data/{cid}/network | Download a file from the network to the local node if it&#39;s not available locally. Note: Download is performed async. Call can return before download is completed.
 [**download_network_manifest**](DataApi.md#download_network_manifest) | **GET** /data/{cid}/network/manifest | Download only the dataset manifest from the network to the local node if it&#39;s not available locally.
 [**download_network_stream**](DataApi.md#download_network_stream) | **GET** /data/{cid}/network/stream | Download a file from the network in a streaming manner. If the file is not available locally, it will be retrieved from other nodes in the network if able.
+[**has_block**](DataApi.md#has_block) | **GET** /data/{cid}/exists | Check if a block identified by CID exists in the local node.
 [**list_data**](DataApi.md#list_data) | **GET** /data | Lists manifest CIDs stored locally in node.
 [**space**](DataApi.md#space) | **GET** /space | Gets a summary of the storage space allocation of the node.
 [**upload**](DataApi.md#upload) | **POST** /data | Upload a file in a streaming manner. Once finished, the file is stored in the node and can be retrieved by any node in the network using the returned CID.
@@ -27,10 +28,10 @@ import codex_api_client
 from codex_api_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:8080/api/codex/v1
+# Defining the host is optional and defaults to http://localhost:8080/api/storage/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = codex_api_client.Configuration(
-    host = "http://localhost:8080/api/codex/v1"
+    host = "http://localhost:8080/api/storage/v1"
 )
 
 
@@ -92,10 +93,10 @@ import codex_api_client
 from codex_api_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:8080/api/codex/v1
+# Defining the host is optional and defaults to http://localhost:8080/api/storage/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = codex_api_client.Configuration(
-    host = "http://localhost:8080/api/codex/v1"
+    host = "http://localhost:8080/api/storage/v1"
 )
 
 
@@ -161,10 +162,10 @@ from codex_api_client.models.data_item import DataItem
 from codex_api_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:8080/api/codex/v1
+# Defining the host is optional and defaults to http://localhost:8080/api/storage/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = codex_api_client.Configuration(
-    host = "http://localhost:8080/api/codex/v1"
+    host = "http://localhost:8080/api/storage/v1"
 )
 
 
@@ -230,10 +231,10 @@ from codex_api_client.models.data_item import DataItem
 from codex_api_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:8080/api/codex/v1
+# Defining the host is optional and defaults to http://localhost:8080/api/storage/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = codex_api_client.Configuration(
-    host = "http://localhost:8080/api/codex/v1"
+    host = "http://localhost:8080/api/storage/v1"
 )
 
 
@@ -298,10 +299,10 @@ import codex_api_client
 from codex_api_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:8080/api/codex/v1
+# Defining the host is optional and defaults to http://localhost:8080/api/storage/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = codex_api_client.Configuration(
-    host = "http://localhost:8080/api/codex/v1"
+    host = "http://localhost:8080/api/storage/v1"
 )
 
 
@@ -353,6 +354,74 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **has_block**
+> HasBlock200Response has_block(cid)
+
+Check if a block identified by CID exists in the local node.
+
+### Example
+
+
+```python
+import codex_api_client
+from codex_api_client.models.has_block200_response import HasBlock200Response
+from codex_api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:8080/api/storage/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = codex_api_client.Configuration(
+    host = "http://localhost:8080/api/storage/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with codex_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = codex_api_client.DataApi(api_client)
+    cid = 'cid_example' # str | CID of the block to check.
+
+    try:
+        # Check if a block identified by CID exists in the local node.
+        api_response = api_instance.has_block(cid)
+        print("The response of DataApi->has_block:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DataApi->has_block: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **cid** | **str**| CID of the block to check. | 
+
+### Return type
+
+[**HasBlock200Response**](HasBlock200Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Block existence information |  -  |
+**400** | Invalid CID is specified |  -  |
+**500** | Well it was bad-bad |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **list_data**
 > DataList list_data()
 
@@ -367,10 +436,10 @@ from codex_api_client.models.data_list import DataList
 from codex_api_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:8080/api/codex/v1
+# Defining the host is optional and defaults to http://localhost:8080/api/storage/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = codex_api_client.Configuration(
-    host = "http://localhost:8080/api/codex/v1"
+    host = "http://localhost:8080/api/storage/v1"
 )
 
 
@@ -433,10 +502,10 @@ from codex_api_client.models.space import Space
 from codex_api_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:8080/api/codex/v1
+# Defining the host is optional and defaults to http://localhost:8080/api/storage/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = codex_api_client.Configuration(
-    host = "http://localhost:8080/api/codex/v1"
+    host = "http://localhost:8080/api/storage/v1"
 )
 
 
@@ -495,10 +564,10 @@ import codex_api_client
 from codex_api_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:8080/api/codex/v1
+# Defining the host is optional and defaults to http://localhost:8080/api/storage/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = codex_api_client.Configuration(
-    host = "http://localhost:8080/api/codex/v1"
+    host = "http://localhost:8080/api/storage/v1"
 )
 
 
@@ -507,7 +576,7 @@ with codex_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = codex_api_client.DataApi(api_client)
     content_type = 'image/png' # str | The content type of the file. Must be valid. (optional)
-    content_disposition = 'attachment; filename=\"codex.png\"' # str | The content disposition used to send the filename. (optional)
+    content_disposition = 'attachment; filename=\"storage.png\"' # str | The content disposition used to send the filename. (optional)
     body = None # bytearray |  (optional)
 
     try:
