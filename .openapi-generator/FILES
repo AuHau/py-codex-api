@@ -47,8 +47,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_connection.py
-test/test_has_block200_response.py
-test/test_nat_info.py
-test/test_storage_version.py
 tox.ini
